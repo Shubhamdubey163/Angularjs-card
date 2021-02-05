@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <title>Profile card</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.7.3/tailwind.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.6.0/alpine.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #28223f;
+      font-family: Montserrat, sans- serif;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    h3 {
+      margin: 10px 0;
+    }
+
+    h6 {
+      margin: 5px 0;
+      text-transform: uppercase;
+    }
+
+    p {
+      font-size: 14px;
+      line-height: 21px;
+    }
+
+    .card-container {
+      background-color: #231e39;
+      border-radius: 5px;
+      box-shadow: 0px 10px 20px -10px rgba(0, 0, 0, 0.75);
+      color: #b3b8cd;
+      padding-top: 30px;
+      position: relative;
+      width: 350px;
+      max-width: 100%;
+      margin: 0 5%;
+      text-align: center;
+    }
+
+    .card-container .pro {
+      colnor: #231e39;
+      background-color: #febb0b;
+      border-radius: 3px;
+      font-size: 14px;
+      font-weight: bold;
+      padding: 3px 7px;
+      position: absolute;
+      top: 30px;
+      left: 30px;
+
+    }
+
+    .card-container .round {
+      border: 1px solid #03bfcb;
+      border-radius: 50%;
+      padding: 7px;
+
+      margin: 0 auto;
+
+    }
+
+    .round {
+      height: 128px;
+      width: 128px;
+    }
+
+    button.primary {
+      background-color: #03bfcb;
+      border: 1px solid #03bfcb;
+      border-radius: 3px;
+      color: #231e39;
+      font-family: Montserrat, sans-serif;
+      font-weight: 500;
+      padding: 10px 25px;
+    }
+
+    button.primary.ghost {
+      background-color: transparent;
+      color: #02899c;
+    }
+
+    .skills {
+      background-color: #1f1a36;
+      text-align: left;
+      padding: 15px;
+      margin-top: 30px;
+    }
+
+    .skills ul {
+
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .skills ul li {
+      border: 1px solid #2d2747;
+      border-radius: 2px;
+      display: inline-block;
+      font-size: 12px;
+      margin: 0 7px 7px 0;
+      padding: 7px;
+    }
+
+    .card-container.col-4.pd-12 {
+      padding: 30px 14px;
+    }
+
+    input[type="file"].custom {
+      border: 0;
+      clip: rect(0, 0, 0, 0);
+      height: 1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute !important;
+      white-space: nowrap;
+      width: 1px;
+    }
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+
+<body ng-app='MyApp' ng-controller="MyController">
+  <div class="card-container col-4 pd-12">
+    <span class="pro">PRO</span>
+    <br>
+    <!-- <img class="round" src="https://randomuser.me/api/portraits/women/79.jpg" alt="user" /> -->
+    <input type="file" onchange="angular.element(this).scope().SelectFile(event)" />
+    <!-------------------------------------------------------------------------->
+    <h3> <input type="text" class="form-control" ng-model="Name" placeholder="Enter a name"></h3>
+    <h6><input type="text" class="form-control" ng-model="Country" placeholder="Country"></h6>
+    <p>
+      <textarea class="form-control" placeholder="Designation and Experience" ng-model="Designation"
+        Countryrequired=""></textarea>
+    </p>
+
+    <div class="skills">
+      <h6>Skills</h6>
+      <ul>
+        <li><input type="checkbox" name="skill" class="custom-control-input" value="UI / UX">UI / UX</li>
+        <li><input type="checkbox" name="skill" class="custom-control-input" value="Frontend Development">Frontend
+          Development</li>
+        <li><input type="checkbox" name="skill" class="custom-control-input" value="HTML"> HTML</li>
+        <li><input type="checkbox" name="skill" class="custom-control-input" value="CSS"> CSS</li>
+        <li><input type="checkbox" name="skill" class="custom-control-input" value="JavaScript"> JavaScript</li>
+        <li><input type="checkbox" name="skill" class="custom-control-input" value="Angular"> Angular</li>
+        <li><input type="checkbox" name="skill" class="custom-control-input" value="React"> React</li>
+        <li><input type="checkbox" name="skill" class="custom-control-input" value="Node"> Node</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card-container col-6">
+    <span class="pro">PRO</span>
+    <!-- <img class="round" src="https://randomuser.me/api/portraits/women/79.jpg" alt="user" /> -->
+    <img ng-src="{{PreviewImage}}" ng-show="PreviewImage != null" alt="" class="round" />
+    <h3>{{Name}}</h3>
+    <h6>{{Country}}</h6>
+    <p>
+      {{Designation}}
+    </p>
+
+    <div class="skills">
+      <h6>Skills</h6>
+      <ul>
+
+        <li ng-repeat="ls in SelectedSkill track by $index">{{ls}}</li>
+        <!-- <li>UI / UX</li>
+                <li>Frontend Development</li>
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+                <li>React</li>
+                <li>React</li>
+                <li>Node</li> -->
+      </ul>
+    </div>
+  </div>
+  <script>
+    var app = angular.module('MyApp', [])
+    app.controller('MyController', function ($scope) {
+      $scope.SelectFile = function (e) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          $scope.PreviewImage = e.target.result;
+          $scope.$apply();
+        };
+
+        reader.readAsDataURL(e.target.files[0]);
+      };
+
+
+      // $scope.name = "shubham;"
+
+      $scope.SelectedSkill = [];
+
+      $('input[name=skill]').change(function () {
+        if ($(this).is(":checked")) {
+          $scope.SelectedSkill.push($(this).val());
+        
+        } else {
+          var index = $scope.SelectedSkill.indexOf($(this).val());
+          if (index !== -1) {
+            $scope.SelectedSkill.splice(index, 1);
+          }
+
+
+        }
+        $scope.$apply();
+        //'unchecked' event code
+      });
+
+    });
+
+  </script>
+</body>
+
+</html>
